@@ -5,8 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppZylix"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Zyliz Solutions" Height="450" Width="800">
     <Grid>
-        
+        <Ribbon x:Name="Ribbon" SelectedIndex="0">
+            <Ribbon.HelpPaneContent>
+                <RibbonButton x:Name="Help"  Label="Help"/>
+            </Ribbon.HelpPaneContent>
+
+            <Ribbon.QuickAccessToolBar>
+                <RibbonQuickAccessToolBar>
+                    <RibbonSplitButton x:Name="Ini">
+                        <RibbonSplitMenuItem Header="Configuration One"/>
+                        <RibbonSplitMenuItem Header="Configuration Two"/>
+                        <RibbonSplitMenuItem Header="Configuration Three"/>
+                    </RibbonSplitButton>
+                </RibbonQuickAccessToolBar>
+            </Ribbon.QuickAccessToolBar>
+
+            <Ribbon.ApplicationMenu>
+                <RibbonApplicationMenu KeyTip="F">
+                    <RibbonApplicationMenuItem Header="Options"/>
+                    <RibbonApplicationMenuItem Header="Exit"/>
+                </RibbonApplicationMenu>
+            </Ribbon.ApplicationMenu>
+
+            <RibbonTab Header="Home">
+                <RibbonGroup x:Name="ClipBoardGroup" Header="Clipboard">
+                    <RibbonMenuButton Label="Paste" KeyTip="V">
+                        <RibbonMenuItem Header="Keep Text Only" KeyTip="T" Icon="{DynamicResource {x:Static SystemParameters.CursorHeightKey}}" />
+                        <RibbonMenuItem Header="Paste Special" KeyTip="S"/>
+                    </RibbonMenuButton>
+                    <RibbonButton Label="Cut" KeyTip="X"/>
+                    <RibbonButton Label="Copy" KeyTip="C"/>
+                    <RibbonButton Label="Format Painter" KeyTip="FP"/>
+                </RibbonGroup>
+                <RibbonGroup x:Name="Colors" Header="Colors">
+                    <RibbonRadioButton Label="Red" KeyTip="R" IsChecked="True"/>
+                    <RibbonRadioButton Label="Green" KeyTip="G" />
+                    <RibbonRadioButton Label="Blue" KeyTip="B" />
+                </RibbonGroup>
+            </RibbonTab>
+            <RibbonTab Header="Launch" KeyTip="L">
+                <RibbonGroup x:Name="DesktopApplication" Header="Desktop Application"/>
+            </RibbonTab>
+            
+        </Ribbon>
     </Grid>
 </Window>

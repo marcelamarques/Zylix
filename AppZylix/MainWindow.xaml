@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppZylix"
         mc:Ignorable="d"
-        Title="Zyliz Solutions" Height="450" Width="800">
-    <Grid>
-        <Ribbon x:Name="Ribbon" SelectedIndex="0">
+        Title="Zyliz Solutions" Height="450" Width="800" Loaded="Window_Loaded">
+    <StackPanel>
+        <Ribbon x:Name="Ribbon" SelectedIndex="0" Grid.Row="1" SelectionChanged="Ribbon_SelectionChanged">
             <Ribbon.HelpPaneContent>
                 <RibbonButton x:Name="Help"  Label="Help"/>
             </Ribbon.HelpPaneContent>
 
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
-                    <RibbonSplitButton x:Name="Ini">
-                        <RibbonSplitMenuItem Header="Configuration One"/>
+                    <RibbonSplitButton x:Name="Ini" Label="Inicio" SmallImageSource="pack://siteoforigin:,,,/Resources/Hopstarter-Mac-Folders-Microsoft-Office.ico" >
+                        <RibbonSplitMenuItem Header="Configuration One" Click="RibbonSplitMenuItem_Click"/>
                         <RibbonSplitMenuItem Header="Configuration Two"/>
                         <RibbonSplitMenuItem Header="Configuration Three"/>
                     </RibbonSplitButton>
@@ -32,7 +32,7 @@
             <RibbonTab Header="Home">
                 <RibbonGroup x:Name="ClipBoardGroup" Header="Clipboard">
                     <RibbonMenuButton Label="Paste" KeyTip="V">
-                        <RibbonMenuItem Header="Keep Text Only" KeyTip="T" Icon="{DynamicResource {x:Static SystemParameters.CursorHeightKey}}" />
+                        <RibbonMenuItem Header="Keep Text Only" KeyTip="T" />
                         <RibbonMenuItem Header="Paste Special" KeyTip="S"/>
                     </RibbonMenuButton>
                     <RibbonButton Label="Cut" KeyTip="X"/>
@@ -48,7 +48,43 @@
             <RibbonTab Header="Launch" KeyTip="L">
                 <RibbonGroup x:Name="DesktopApplication" Header="Desktop Application"/>
             </RibbonTab>
-            
         </Ribbon>
-    </Grid>
+
+        <!--<TreeView Background="#CCCCFF" x:Name="TreeView" ItemsSource="{Binding Source={x:Static models:ServiceFacade.Instance}}">
+
+            --><!--<DataTemplate DataType="{x:Type models:Configure}">
+                <TextBlock Text="{Binding PathDir}" />
+            </DataTemplate>-->
+
+            <!--<HierarchicalDataTemplate DataType="{x:Type models:Configure}" ItemsSource="{Binding Children}">
+                <Grid>
+                    <TextBlock Text="{Binding Comments}" />
+                </Grid>
+            </HierarchicalDataTemplate>--><!--
+        </TreeView>-->
+        <DockPanel>
+            <DockPanel Width="200" DockPanel.Dock="Left">
+                <TreeView Background="#CCCCFF" x:Name="TreeView" MouseLeave="TreeView_MouseLeave" >
+                    <TreeView.Resources>
+                        <Style TargetType="TreeViewItem">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock FontWeight="Heavy" Text="{Binding}"></TextBlock>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TreeView.Resources>
+                </TreeView>
+            </DockPanel>
+            <DockPanel>
+                <DataGrid>
+
+                </DataGrid>
+            </DockPanel>
+        </DockPanel>
+
+
+    </StackPanel>
 </Window>

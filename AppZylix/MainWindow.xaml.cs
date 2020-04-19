@@ -89,18 +89,31 @@ namespace AppZylix
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var fsdfds = Directory.GetDirectories(@"./Configuration");
-            //foreach (string path in Directory.GetDirectories(@"C:\Users\user\source\repos\Zylix\AppZylix\Configuration"))
-            foreach (string path in Directory.GetDirectories(@"./Configuration"))
+            TabItem item = new TabItem();
+            item.Header = "TesteTabIem";
+            item.Name = "tabOne";
+            var dsf = TabZylix.ContentTemplate;
+
+            //var fsdfds = Directory.GetDirectories(@"./Configuration");
+            TreeView treeView = new TreeView();
+            treeView.Name = "TesteA";
+
+            foreach (string path in Directory.GetDirectories(@"C:\Users\user\source\repos\Zylix\AppZylix\Configuration"))
+            //foreach (string path in Directory.GetDirectories(@"./Configuration"))
             {
                 string[] name = path.Split('\\');
-                Populate(name[name.Length - 1], path, TreeView, null, false);
+
+                //TabItem tedfs = (TabItem)TabZylix.Items.GetItemAt(0); // .FindName("tree");
+                TreeView tree = (TreeView)((DockPanel)((Style)TabZylix.TryFindResource("test1"))["left")).Children[0];
+                //TreeView dsf = (TreeView)tedfs.TryFindResource("tes");
+                //Populate(name[name.Length - 1], path, TreeView, null, false);
+                Populate(name[name.Length - 1], path, tree, null, false);
             }
+
+            
+            //item.Content
+            TabZylix.Items.Add(item);
         }
 
-        private void TreeView_MouseLeave(object sender, MouseEventArgs e)
-        {
-            
-        }
     }
 }

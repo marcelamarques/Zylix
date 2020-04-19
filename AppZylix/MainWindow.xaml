@@ -50,41 +50,42 @@
             </RibbonTab>
         </Ribbon>
 
-        <!--<TreeView Background="#CCCCFF" x:Name="TreeView" ItemsSource="{Binding Source={x:Static models:ServiceFacade.Instance}}">
+        <TabControl x:Name="TabZylix">
+            <TabControl.Resources>
+                <Style TargetType="TabItem" >
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <DockPanel>
+                                    <DockPanel Width="200" DockPanel.Dock="Left" >
+                                        <TreeView Background="#CCCCFF" x:Name="TreeView">
+                                            <TreeView.Resources>
+                                                <Style TargetType="TreeViewItem" x:Key="test2">
+                                                    <Setter Property="HeaderTemplate">
+                                                        <Setter.Value>
+                                                            <DataTemplate>
+                                                                <TextBlock FontWeight="Heavy" Text="{Binding}"></TextBlock>
+                                                            </DataTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </TreeView.Resources>
+                                        </TreeView>
+                                    </DockPanel>
 
-            --><!--<DataTemplate DataType="{x:Type models:Configure}">
-                <TextBlock Text="{Binding PathDir}" />
-            </DataTemplate>-->
+                                    <DockPanel>
+                                        <DataGrid>
 
-            <!--<HierarchicalDataTemplate DataType="{x:Type models:Configure}" ItemsSource="{Binding Children}">
-                <Grid>
-                    <TextBlock Text="{Binding Comments}" />
-                </Grid>
-            </HierarchicalDataTemplate>--><!--
-        </TreeView>-->
-        <DockPanel>
-            <DockPanel Width="200" DockPanel.Dock="Left">
-                <TreeView Background="#CCCCFF" x:Name="TreeView" MouseLeave="TreeView_MouseLeave" >
-                    <TreeView.Resources>
-                        <Style TargetType="TreeViewItem">
-                            <Setter Property="HeaderTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <TextBlock FontWeight="Heavy" Text="{Binding}"></TextBlock>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </TreeView.Resources>
-                </TreeView>
-            </DockPanel>
-            <DockPanel>
-                <DataGrid>
+                                        </DataGrid>
+                                    </DockPanel>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
 
-                </DataGrid>
-            </DockPanel>
-        </DockPanel>
+            </TabControl.Resources>
 
-
+        </TabControl>
     </StackPanel>
 </Window>

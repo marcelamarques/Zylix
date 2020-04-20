@@ -6,7 +6,39 @@
         xmlns:local="clr-namespace:AppZylix"
         mc:Ignorable="d"
         Title="Zyliz Solutions" Height="450" Width="800" Loaded="Window_Loaded">
-    <StackPanel>
+    <StackPanel x:Name="Panel">
+        <StackPanel.Resources>
+            <DataTemplate x:Key="CustomHeaderTemplate">
+                <Label Content="{Binding Title}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="TabContent">
+                <DockPanel>
+                    <DockPanel Width="200" DockPanel.Dock="Left" x:Name="DockLeft" >
+                        <TreeView Background="#CCCCFF" x:Name="TreeView" >
+                            <TreeView.Resources>
+                                <Style TargetType="TreeViewItem" x:Key="test2">
+                                    <Setter Property="HeaderTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock FontWeight="Heavy" Text="{Binding Name}"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TreeView.Resources>
+                        </TreeView>
+                    </DockPanel>
+
+                    <DockPanel>
+                        <DataGrid>
+
+                        </DataGrid>
+                    </DockPanel>
+                </DockPanel>
+            </DataTemplate>
+        </StackPanel.Resources>
+        
         <Ribbon x:Name="Ribbon" SelectedIndex="0" Grid.Row="1" SelectionChanged="Ribbon_SelectionChanged">
             <Ribbon.HelpPaneContent>
                 <RibbonButton x:Name="Help"  Label="Help"/>
@@ -15,17 +47,15 @@
             <Ribbon.QuickAccessToolBar>
                 <RibbonQuickAccessToolBar>
                     <RibbonSplitButton x:Name="Ini" Label="Inicio" SmallImageSource="pack://siteoforigin:,,,/Resources/Hopstarter-Mac-Folders-Microsoft-Office.ico" >
-                        <RibbonSplitMenuItem Header="Configuration One" Click="RibbonSplitMenuItem_Click"/>
-                        <RibbonSplitMenuItem Header="Configuration Two"/>
-                        <RibbonSplitMenuItem Header="Configuration Three"/>
+                        <RibbonSplitMenuItem Header="Nova Configuração" Click="RibbonSplitMenuItem_Click"/>
                     </RibbonSplitButton>
                 </RibbonQuickAccessToolBar>
             </Ribbon.QuickAccessToolBar>
 
             <Ribbon.ApplicationMenu>
                 <RibbonApplicationMenu KeyTip="F">
-                    <RibbonApplicationMenuItem Header="Options"/>
-                    <RibbonApplicationMenuItem Header="Exit"/>
+                    <RibbonApplicationMenuItem Header="Opções"/>
+                    <RibbonApplicationMenuItem Header="Sair"/>
                 </RibbonApplicationMenu>
             </Ribbon.ApplicationMenu>
 
@@ -50,42 +80,8 @@
             </RibbonTab>
         </Ribbon>
 
-        <TabControl x:Name="TabZylix">
-            <TabControl.Resources>
-                <Style TargetType="TabItem" >
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="TabItem">
-                                <DockPanel>
-                                    <DockPanel Width="200" DockPanel.Dock="Left" >
-                                        <TreeView Background="#CCCCFF" x:Name="TreeView">
-                                            <TreeView.Resources>
-                                                <Style TargetType="TreeViewItem" x:Key="test2">
-                                                    <Setter Property="HeaderTemplate">
-                                                        <Setter.Value>
-                                                            <DataTemplate>
-                                                                <TextBlock FontWeight="Heavy" Text="{Binding}"></TextBlock>
-                                                            </DataTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </Style>
-                                            </TreeView.Resources>
-                                        </TreeView>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <DataGrid>
-
-                                        </DataGrid>
-                                    </DockPanel>
-                                </DockPanel>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-
-            </TabControl.Resources>
-
+        <TabControl x:Name="TabZylix" ItemTemplate="{StaticResource  CustomHeaderTemplate}" ContentTemplate="{StaticResource TabContent}">
+            
         </TabControl>
     </StackPanel>
 </Window>

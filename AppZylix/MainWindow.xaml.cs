@@ -21,19 +21,17 @@ namespace AppZylix
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Configure> TabItems;
         public MainWindow()
         {
             InitializeComponent();
+            TabItems = new List<Configure>();
         }
 
         private void RibbonSplitMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            //var teste = MainTabControl.ItemTemplate;
-            //TabItem item = new TabItem();
-            //item.Header = "TesteTabItem";
-            //MainTabControl.Items.Add(item);
-            //ServiceFacade service = ServiceFacade.Instance;
-            //TreeView.ItemTemplate = (DataTemplate)service.Configures;
+            TabItems.Add(new Configure { Title = "Test_1", Name = "Config" });
+            TabZylix.ItemsSource = TabItems;
         }
 
         private void Ribbon_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -89,30 +87,25 @@ namespace AppZylix
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            TabItem item = new TabItem();
-            item.Header = "TesteTabIem";
-            item.Name = "tabOne";
-            var dsf = TabZylix.ContentTemplate;
+            //TabItem item = new TabItem();
+            //item.Header = "TesteTabIem";
+            //item.Name = "tabOne";
+            //item.HeaderTemplate = TabZylix.FindResource("HeaderTab") as DataTemplate;
 
-            //var fsdfds = Directory.GetDirectories(@"./Configuration");
-            TreeView treeView = new TreeView();
-            treeView.Name = "TesteA";
+            //////var fsdfds = Directory.GetDirectories(@"./Configuration");
+            //TreeView treeView = new TreeView();
+            //treeView.Name = "TesteA";
 
-            foreach (string path in Directory.GetDirectories(@"C:\Users\user\source\repos\Zylix\AppZylix\Configuration"))
-            //foreach (string path in Directory.GetDirectories(@"./Configuration"))
-            {
-                string[] name = path.Split('\\');
-
-                //TabItem tedfs = (TabItem)TabZylix.Items.GetItemAt(0); // .FindName("tree");
-                TreeView tree = (TreeView)((DockPanel)((Style)TabZylix.TryFindResource("test1"))["left")).Children[0];
-                //TreeView dsf = (TreeView)tedfs.TryFindResource("tes");
-                //Populate(name[name.Length - 1], path, TreeView, null, false);
-                Populate(name[name.Length - 1], path, tree, null, false);
-            }
+            //foreach (string path in Directory.GetDirectories(@"C:\Users\user\source\repos\Zylix\AppZylix\Configuration"))
+            ////foreach (string path in Directory.GetDirectories(@"./Configuration"))
+            //{
+            //    string[] name = path.Split('\\');
+            //    //Populate(name[name.Length - 1], path, TreeView, null, false);
+            //    Populate(name[name.Length - 1], path, treeView, null, false);
+            //}
+            //item.DataContext = treeView;
 
             
-            //item.Content
-            TabZylix.Items.Add(item);
         }
 
     }
